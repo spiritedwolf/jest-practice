@@ -47,7 +47,32 @@ describe('CookbookCli', () => {
 
   describe('Deleting a recipe', () => {
     test('should accept the recipe name and display the correct message', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `remove`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ['bread','chicken','sizzling'];
+      myCookBook.addRecipe(recipeName, recipeIngredients);
 
+      const testValue = myCookBookCli.run(cmd, recipeName);
+
+      expect(testValue).toEqual(`Successfully removed the following recipe: ${recipeName}`);
+    });
+  });
+
+  // Stretch goals
+  describe(`Check if recipe exists already`, () => {
+    test('should receive the recipe name and display the correct message', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `add`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ['bread','chicken','sizzling'];
+      myCookBook.addRecipe(recipeName, recipeIngredients);
+      myCookBookCli.run(cmd, recipeName);
+      const testValue = myCookBookCli.run(cmd, recipeName);
+
+      expect(testValue).toEqual(`The recipe ${recipeName} is already added in your cookbook.`);
     });
   });
 });

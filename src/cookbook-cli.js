@@ -10,12 +10,13 @@ class CookbookCli {
       case 'list': return this.list();
       case 'add': return this.add(...args);
       case 'get': return this.get(...args);
-      case 'remove': return this.remove();
+      case 'remove': return this.remove(...args);
       default: return `Whoops, the following command is unsupported: ${command}.`;
     }
   }
 
   list() {
+
     return `You have the following recipes: ${this.cookbook.listRecipes().join(',')}`;
   }
 
@@ -35,3 +36,4 @@ class CookbookCli {
 }
 
 module.exports = { CookbookCli };
+
