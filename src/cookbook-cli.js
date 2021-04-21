@@ -21,8 +21,14 @@ class CookbookCli {
   }
 
   add(name, ingredients) {
-    this.cookbook.addRecipe(name, ingredients);
-    return `Successfully added the following recipe: ${name}`;
+    const recipe = this.cookbook.listRecipes();
+    if(recipe.includes(name)) {
+      return `The recipe ${name} is already added in your cookbook.`;
+    }
+    else {
+      this.cookbook.addRecipe(name, ingredients);
+      return `Successfully added the following recipe: ${name}`;
+    }
   }
 
   get(name) {
