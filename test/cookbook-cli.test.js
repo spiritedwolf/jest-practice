@@ -91,5 +91,20 @@ describe('CookbookCli', () => {
     });
   });
 
+  describe(`Deleting of recipe`, () => {
+    test('should receive the recipe name and display the correct message', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `remove`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ['bread','chicken','sizzling'];
+      myCookBook.addRecipe(recipeName, recipeIngredients);
+
+      const testValue = myCookBookCli.run(cmd, 'IDoesNotExist');
+
+      expect(testValue).toEqual(`The recipe IDoesNotExist does not exists.`);
+    });
+  });
+
 
 });
