@@ -32,7 +32,13 @@ class CookbookCli {
   }
 
   get(name) {
-    return `The ingredients for ${name} are: ${this.cookbook.getRecipe(name)}`;
+    const recipe = this.cookbook.listRecipes();
+    if(recipe.includes(name)) {
+      return `The ingredients for ${name} are: ${this.cookbook.getRecipe(name)}`;
+    }
+    else {
+      return `The recipe ${name} does not exists.`
+    }
   }
 
   remove(name) {
