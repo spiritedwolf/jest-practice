@@ -42,8 +42,14 @@ class CookbookCli {
   }
 
   remove(name) {
-    this.cookbook.removeRecipe(name);
-    return `Successfully removed the following recipe: ${name}`;
+    const recipe = this.cookbook.listRecipes();
+    if(recipe.includes(name)) {
+      this.cookbook.removeRecipe(name);
+      return `Successfully removed the following recipe: ${name}`;
+    }
+    else {
+      return `The recipe ${name} does not exists.`
+    }
   }
 }
 
