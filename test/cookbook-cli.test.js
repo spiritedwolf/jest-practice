@@ -72,18 +72,18 @@ describe('CookbookCli', () => {
 
     // Integration test
 
-    // test('should display the ingredients required to make the specified recipe', () => {
-    //   const myCookBook = new Cookbook();
-    //   const myCookBookCli = new CookbookCli(myCookBook);
-    //   const cmd = `get`;
-    //   const recipeName = `Chicken Pizza`;
-    //   const recipeIngredients = ['bread','chicken','sizzling'];
-    //   myCookBook.addRecipe(recipeName, recipeIngredients);
+    test('should display the ingredients required to make the specified recipe', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `get`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ["bread","chicken","sizzling"];
+      myCookBook.addRecipe(recipeName, recipeIngredients);
 
-    //   const recipeList = myCookBookCli.run(cmd, recipeName);
+      const recipeList = myCookBookCli.run(cmd, recipeName);
 
-    //   expect(testValue).toEqual(`The ingredients for Chicken Pizza are: bread,chicken,sizzling`);
-    // });
+      expect(myCookBookCli.cookbook.getRecipe(recipeName)).toEqual(recipeIngredients);
+    });
 
 
   });
