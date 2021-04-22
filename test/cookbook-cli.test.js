@@ -101,6 +101,21 @@ describe('CookbookCli', () => {
 
       expect(testValue).toEqual(`Successfully removed the following recipe: ${recipeName}`);
     });
+
+    // Integration test
+    
+    test('should accept the recipe name and display the correct message', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `remove`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ['bread','chicken','sizzling'];
+      myCookBook.addRecipe(recipeName, recipeIngredients);
+
+      myCookBookCli.run(cmd, recipeName);
+
+      expect(myCookBookCli.cookbook.recipes).toEqual({});
+    });
   });
 
 
