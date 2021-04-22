@@ -15,6 +15,21 @@ describe('CookbookCli', () => {
       expect(testValue).toBe(`Successfully added the following recipe: ${recipeName}`);
 
     });
+
+    // Integration test
+
+    test('should accept the recipe information and display the correct message', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `add`;
+      const recipeName = `Chicken Pizza`;
+      const recipeIngredients = ['bread','chicken','sizzling'];
+
+      myCookBookCli.run(cmd, recipeName, recipeIngredients);
+      
+      expect(myCookBookCli.cookbook.recipes).toEqual({"Chicken Pizza": ["bread","chicken","sizzling"]});
+
+    });
   });
 
   describe('Listing recipes', () => {
@@ -59,6 +74,8 @@ describe('CookbookCli', () => {
       expect(testValue).toEqual(`Successfully removed the following recipe: ${recipeName}`);
     });
   });
+
+
 
   // Stretch goals
   describe(`Check if recipe exists already`, () => {
