@@ -43,6 +43,17 @@ describe('CookbookCli', () => {
 
       expect(testValue).toEqual(`You have the following recipes: ${recipe}`);
     });
+
+    // Integration test
+
+    test('should display the correct message listing all of the recipe names', () => {
+      const myCookBook = new Cookbook();
+      const myCookBookCli = new CookbookCli(myCookBook);
+      const cmd = `list`;
+      const recipeList = myCookBookCli.run(cmd);
+
+      expect(myCookBookCli.cookbook.listRecipes()).toEqual([]);
+    });
   });
 
   describe('Retrieving a recipe', () => {
@@ -58,6 +69,23 @@ describe('CookbookCli', () => {
 
       expect(testValue).toEqual(`The ingredients for Chicken Pizza are: bread,chicken,sizzling`);
     });
+
+    // Integration test
+
+    // test('should display the ingredients required to make the specified recipe', () => {
+    //   const myCookBook = new Cookbook();
+    //   const myCookBookCli = new CookbookCli(myCookBook);
+    //   const cmd = `get`;
+    //   const recipeName = `Chicken Pizza`;
+    //   const recipeIngredients = ['bread','chicken','sizzling'];
+    //   myCookBook.addRecipe(recipeName, recipeIngredients);
+
+    //   const recipeList = myCookBookCli.run(cmd, recipeName);
+
+    //   expect(testValue).toEqual(`The ingredients for Chicken Pizza are: bread,chicken,sizzling`);
+    // });
+
+
   });
 
   describe('Deleting a recipe', () => {
